@@ -1,25 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import axios from "axios"
+import {useEffect, useState} from "react"
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	// meanings is a variable and setMeanings is a function jused to change the state
+	//[] is initial state and is an array
+	const [meanings, setMeanings] = useState([])
+
+	const dictionaryApi = async() => {
+		try {
+			const data = await axios.get(
+				"https://api.dictionaryapi.dev/api/v2/entries/en/plane"
+			);
+		} catch(error) {
+			console.log(error);
+		}
+	}
+
+	useEffect(() => {
+		dictionaryApi();
+	}, [])
+
+
+	return (
+    	<div className="App">Helllo World!</div>
+  	);
 }
 
 export default App;
